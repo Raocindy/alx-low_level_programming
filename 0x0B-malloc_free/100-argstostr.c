@@ -2,60 +2,49 @@
 #include <stdlib.h>
 
 /**
- * argstostr - main entry
- * @ac: int input
- * @av: double pointer array
- * Return: 0
+ * argstostr - concatenates all the arguments.
+ * @ac: an argument.
+ * @av: an argument.
  *
+ * Return: return pointer.
  */
-
 char *argstostr(int ac, char **av)
-
 {
-	int i, n, r = 0, l = 0;
-	char *str;
+	int m, n, o, po;
+	char *sto;
 
-	if (ac == 0 || av == NULL)
-
+	if (ac == 0)
 		return (NULL);
 
-	for (i = 0; i < ac; i++)
-
+	for (m = n = 0; n < ac; n++)
 	{
+		if (av[n] == NULL)
+			return (NULL);
 
-		for (n = 0; av[i][n]; n++)
-
-			l++;
+		for (o = 0; av[n][o] != '\0'; o++)
+			m++;
+		m++;
 	}
+	sto = malloc((m + 1) * sizeof(char));
 
-	l += ac;
-
-	str = malloc(sizeof(char) * l + 1);
-
-	if (str == NULL)
-
+	if (sto == NULL)
+	{
+		free(sto);
 		return (NULL);
-
-	for (i = 0; i < ac; i++)
-
-	{
-
-	for (n = 0; av[i][n]; n++)
-
-	{
-		str[r] = av[i][n];
-
-		r++;
 	}
 
-	if (str[r] == '\0')
-
+	for (n = o = po = 0; po < m; o++, po++)
 	{
-
-		str[r++] = '\n';
-
+		if (av[n][o] == '\0')
+		{
+			sto[po] = '\n';
+			n++;
+			po++;
+			o = 0;
+		}
+		if (po < m - 1)
+			sto[po] = av[n][o];
 	}
-
-	}
-	return (str);
+	sto[po] = '\0';
+	return (sto);
 }
