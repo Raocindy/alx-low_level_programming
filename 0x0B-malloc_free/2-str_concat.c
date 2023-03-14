@@ -2,53 +2,47 @@
 #include <stdlib.h>
 
 /**
- * str_concat - get ends of input and add together for size
- * @s1: input one to concat
- * @s2: input two to concat
- * Return: concat of s1 and s2
+ * *str_concat -  concatenates two strings.
+ * @s1: string.
+ * @s2: string.
  *
+ * Description: a function that concatenates two strings.
+ * Return: NULL on failure.
  */
-
 char *str_concat(char *s1, char *s2)
 {
-	char *conct;
-	int i, ci;
+	char *strg;
+	unsigned int m, n, o, len;
 
 	if (s1 == NULL)
+	{
 		s1 = "";
+	}
 
 	if (s2 == NULL)
+	{
 		s2 = "";
+	}
 
-		i = ci = 0;
-	while (s1[i] != '\0')
-		i++;
+	for (m = 0; s1[m] != '\0'; m++)
+		;
+	for (n = 0; s2[n] != '\0'; n++)
+		;
 
-	while (s2[ci] != '\0')
+	strg = malloc(sizeof(char) * (m + n + 1));
 
-		ci++;
-
-	conct = malloc(sizeof(char) * (i + ci + 1));
-
-	if (conct == NULL)
-
+	if (strg == NULL)
+	{
+		free(strg);
 		return (NULL);
-
-	i = ci = 0;
-
-	while (s1[i] != '\0')
-	{
-		conct[i] = s1[i];
-
-		i++;
-	}
-	while (s2[ci] != '\0')
-	{
-		conct[i] = s2[ci];
-
-		i++, ci++;
 	}
 
-	conct[i] = '\0';
-	return (conct);
+	for (o = 0; o < m; o++)
+		strg[o] = s1[o];
+
+	len = n;
+	for (n = 0; n <= len; o++, n++)
+		strg[o] = s2[n];
+
+	return (strg);
 }
