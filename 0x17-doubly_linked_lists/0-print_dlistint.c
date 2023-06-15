@@ -12,7 +12,7 @@ size_t print_dlistint(const dlistint_t *head)
     int nodeCount = 0;
 
     if (head == NULL)
-        return nodeCount;
+        return (nodeCount);
 
     while (head->prev != NULL)
         head = head->prev;
@@ -24,5 +24,5 @@ size_t print_dlistint(const dlistint_t *head)
         head = head->next;
     }
 
-    return nodeCount;
+    return (nodeCount);
 }
