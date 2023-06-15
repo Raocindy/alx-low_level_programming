@@ -9,20 +9,14 @@
  */
 size_t print_dlistint(const dlistint_t *head)
 {
-    int nodeCount = 0;
+	size_t nodeCount = 0;
 
-    if (head == NULL)
-        return (nodeCount);
+	while (head != NULL)
+	{
+		printf("%d\n", head->n);
+		nodeCount++;
+		head = head->next;
+	}
 
-    while (head->prev != NULL)
-        head = head->prev;
-
-    while (head != NULL)
-    {
-        printf("%d\n", head->n);
-        nodeCount++;
-        head = head->next;
-    }
-
-    return (nodeCount);
+	return (nodeCount);
 }
